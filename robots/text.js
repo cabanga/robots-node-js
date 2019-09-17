@@ -3,7 +3,7 @@ const algorithmiaApiKey = require("../credentials/algorithmia.json").apiKey
 
 async function robot(content){
     await fetchContentFromWikipedia(content)
-    //sanitizeContent(content)
+    sanitizeContent(content)
     //breakContentIntoSentences(content)
     
     async function fetchContentFromWikipedia(content){
@@ -14,6 +14,24 @@ async function robot(content){
         
         content.sourceContentOriginal = wikipediaContent.content
     }
+
+    function sanitizeContent(content){
+        const withOutBlankLinesAndMarketDown = RemoveBlankLinesAndMarketDown(content.sourceContentOriginal)
+        console.log(withOutBlankLinesAndMarketDown)
+
+        function RemoveBlankLinesAndMarketDown(text){
+            const allLines = text.split('\n')
+            const withOutBlank = allLines.filter((line) => {
+                if(line.trim().length === 0 || line.trim().startsWith('=')){
+                    return false
+                }
+                return true
+            })
+            return withOutBlank
+        }
+    }
+
+
 }
 
 module.exports = robot
