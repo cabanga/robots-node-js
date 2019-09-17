@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/cabanga/robots-node-js/issues"
   },
-  "homepage": "https://github.com/cabanga/robots-node-js#readme"
+  "homepage": "https://github.com/cabanga/robots-node-js#readme",
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  }
 }
